@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const apiRouter = require('./apiRouter').router;
+const router = require('./services/routes');
 
 // Instantiate server
 const server = express();
@@ -16,11 +17,9 @@ server.get('/', function (req , res){
     res.status(200).send('<h1> Bienvenue sur mon serveur </h1>');
 });
 
-server.use('/api/', apiRouter);
+server.use('/api/', router);
 
 // Launch server
 server.listen(8080, function(){
     console.log('Serveur en écoute')
 });
-
-console.log( 10 >= 12 >= 3 );
