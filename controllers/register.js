@@ -43,6 +43,10 @@ function getDataForRegister(req) {
      bio : req.body.bio
   };
 
+  dataRegister.password = bcrypt.hash(password, 5);
+
+  console.log(bcrypt.hash(password, 5));
+
     /*if(email == null || username == null || password == null) {
             return res.status(400).json({'error' : 'missing parameters'});
       }*/
