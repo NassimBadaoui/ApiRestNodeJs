@@ -10,8 +10,9 @@ async function post(req, res, next) {
     console.log("hey yo " + req.body.email);
     checkEmail.email = req.body.email;
     const rows = await register.find(checkEmail);
+    console.log(rows[0].CNT);
     if (req.body.email) {
-      if (rows.length === 1) {
+      if (rows[0].CNT >= 1) {
         res.status(404).send('email déjà utilisé').end();
         //trace.addTrace(req, 404);
 
@@ -43,10 +44,10 @@ function getDataForRegister(req) {
      password : req.body.password,
      bio : req.body.bio
   };
-
+    console.log(bcrypt.hash(password, 5));
   dataRegister.password = bcrypt.hash(password, 5);
 
-  console.log(bcrypt.hash(password, 5));
+  
 
     /*if(email == null || username == null || password == null) {
             return res.status(400).json({'error' : 'missing parameters'});

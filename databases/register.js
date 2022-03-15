@@ -1,3 +1,4 @@
+const res = require('express/lib/response');
 const oracledb = require('oracledb');
 const database = require('./database.js');
 
@@ -21,17 +22,20 @@ const INSERT_REGISTER_SQL =
   
   module.exports.createRegister = createRegister;
 
-//const SELECT_EMAIL_EXIST = `SELECT COUNT(*) AS cnt FROM TEST_AUTH_USERS`;
-  const SELECT_EMAIL_EXIST = `SELECT ID_USERS, EMAIL, USERNAME, PASSWORD, DATE_INSCRIPTION, BIO, ISADMIN FROM TEST_AUTH_USERS`;
+const SELECT_EMAIL_EXIST = `SELECT COUNT(*) AS cnt FROM TEST_AUTH_USERS`;
+//  const SELECT_EMAIL_EXIST = `SELECT ID_USERS, EMAIL, USERNAME, PASSWORD, DATE_INSCRIPTION, BIO, ISADMIN FROM TEST_AUTH_USERS`;
 
   async function find(checkEmail) {
     let query = SELECT_EMAIL_EXIST;
     const binds = {};
-    if (checkEmail.conName) {
-      binds.conName = checkEmail.conName;
+    console.log(checkEmail);
+    if (checkEmail.email) {
+      binds.email = checkEmail.email;
       query += `\nWHERE EMAIL = :email`;
     }
     const result = await database.simpleDimExecute(query, binds);
+    console.log(result);
+    console.log(result.rows[0].CNT);
     return result.rows;
   }
 
