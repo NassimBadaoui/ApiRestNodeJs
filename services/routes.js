@@ -5,9 +5,9 @@ const register = require('../controllers/register.js');
 
 router.route('/api/register/') 
   .post(register.post);
-  //.post(dimco.post)
-  //.put(dimco.put)
-  //.delete(dimco.delete);
+  //.post(register.post)
+  //.put(register.put)
+  //.delete(register.delete);
 
 module.exports = router;
 
