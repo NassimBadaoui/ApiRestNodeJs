@@ -38,16 +38,21 @@ module.exports.post = post;
 
 
 function getDataForRegister(req) {
-  const dataRegister = {
-     email : req.body.email,
-     username : req.body.username,
-     password : req.body.password,
-     bio : req.body.bio
-  };
-    console.log(bcrypt.hash(password, 5));
-  dataRegister.password = bcrypt.hash(password, 5);
+   var password;
+    bcrypt.hash(password, 5, function( err, bcryptedPassword){
 
-  
+      password = bcryptedPassword;
+      
+    });
+
+    console.log(password);
+
+    const dataRegister = {
+      email : req.body.email,
+      username : req.body.username,
+      password : password,
+      bio : req.body.bio
+    };
 
     /*if(email == null || username == null || password == null) {
             return res.status(400).json({'error' : 'missing parameters'});
