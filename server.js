@@ -1,7 +1,7 @@
 // Imports
 const express = require('express');
 const bodyParser = require('body-parser');
-const apiRouter = require('./apiRouter').router;
+//const apiRouter = require('./apiRouter').router;
 const router = require('./services/routes');
 
 // Instantiate server
@@ -20,6 +20,6 @@ server.get('/', function (req , res){
 server.use('/api/', router);
 
 // Launch server
-server.listen(8080, function(){
+server.listen(3000, function(){
     console.log('Serveur en écoute')
 });

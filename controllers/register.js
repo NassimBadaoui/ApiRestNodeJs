@@ -7,9 +7,10 @@ const jwt = require('jsonwebtoken');
 async function post(req, res, next) {
   try {
     const checkEmail = {};
-    checkEmail.email = req.query.email;
+    console.log("hey yo " + req.body.email);
+    checkEmail.email = req.body.email;
     const rows = await register.find(checkEmail);
-    if (req.params.email) {
+    if (req.body.email) {
       if (rows.length === 1) {
         res.status(404).send('email déjà utilisé').end();
         //trace.addTrace(req, 404);
