@@ -17,9 +17,7 @@ async function post(req, res, next) {
         //trace.addTrace(req, 404);
 
       } else {
-        let dataRegister = getDataForRegister(req);
-        dataRegister = await register.createRegister(dataRegister);
-        res.status(201).json(dataRegister);
+        let dataRegister = getDataForRegister(req, res, next);
         //trace.addTrace(req, 200);
       }
     /*} else {
@@ -37,26 +35,34 @@ async function post(req, res, next) {
 module.exports.post = post;
 
 
-function getDataForRegister(req) {
-   var password;
-    bcrypt.hash(password, 5, function( err, bcryptedPassword){
-
-      password = bcryptedPassword;
-      
-    });
-
-    console.log(password);
-
+function getDataForRegister(req, res, next) {  
+  
     const dataRegister = {
       email : req.body.email,
       username : req.body.username,
-      password : password,
+      password : req.body.password,
       bio : req.body.bio
     };
 
+
+    bcrypt.hash(dataRegister.password, 5, function( err, bcryptedPassword){
+      dataRegister.password = bcryptedPassword ;
+      register.createRegister(dataRegister);
+      res.status(201).json(dataRegister);
+/*    console.log(err);
+      
+
+      console.log(bcryptedPassword);
+      console.log("testtttet " + dataRegister.password);
+  */    
+    });
+
+
+  
+  
     /*if(email == null || username == null || password == null) {
             return res.status(400).json({'error' : 'missing parameters'});
       }*/
 
-  return dataRegister;
+//  return dataRegister;
 }

@@ -15,6 +15,7 @@ const INSERT_REGISTER_SQL =
     //}
     //delete dataRegister.creationDate;
     //delete dataRegister.updateDate;
+    console.log("test" + dataRegister.password);
     const result = await database.simpleDimExecute(INSERT_REGISTER_SQL, dataRegister);
     //dataRegister.conId = result.outBinds.conId[0];
     return dataRegister;
