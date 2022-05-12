@@ -7,6 +7,12 @@ const INSERT_REGISTER_SQL =
   "VALUES (SEQ_TEST_AUTH_USERS.NEXTVAL, :email, :username, :password, SYSDATE, :bio, 0)";
   //"RETURNING EMAIL INTO :email";
 
+
+const INSERT_SIA_AUTHENTIFICATION =
+  "INSERT INTO SIA_AUTHENTIFICATION(ID_SIA_AUTHENTIFICATION, IDENTIFIANTS, MOTDEPASSE, NOM, PRENOM, EMAIL, PROFIL, DATE_INSCRIPTION)\n"+
+  "VALUES (ID_SIA_AUTHENTIFICATION.NEXTVAL, :identifiant, :motdepasse, :nom, :prenom, :email, :profil, SYSDATE)";
+  //"RETURNING EMAIL INTO :email";
+
   async function createRegister(conn) {
     const dataRegister = Object.assign({}, conn); 
     //dataRegister.conId = {

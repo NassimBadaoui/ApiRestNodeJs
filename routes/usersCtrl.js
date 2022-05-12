@@ -13,6 +13,7 @@ const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
 module.exports = {
     register: function(req, res){
 
+        
         // Params
         var email = req.body.email;
         var username = req.body.username;

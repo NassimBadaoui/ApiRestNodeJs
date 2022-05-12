@@ -3,6 +3,13 @@ const register = require('../databases/register.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+// const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const EMAIL_REGEX = /[-_\w]+\\.\w+/;
+const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
+//Password expression. Password must be between 4 and 8 digits long and include at least one numeric digit. https://regexlib.com/Search.aspx?k=password&c=-1&m=-1&ps=20
+
+
+
 
 async function post(req, res, next) {
   try {
@@ -36,6 +43,26 @@ module.exports.post = post;
 
 
 function getDataForRegister(req, res, next) {  
+
+  
+  if(req.body.email == null || req.body.username == null || req.body.password == null) {
+    return res.status(400).json({'error' : 'missing parameters'});
+}
+
+if(req.body.username.length >= 13 || req.body.username.length <= 4) {
+    return res.status(400).json({'error' : 'wrong username (must be length 5 -12 characters'});
+}
+
+if(!EMAIL_REGEX.test(req.body.email)) {
+    return res.status(400).json({'error' : 'email is not valid'});
+
+}
+
+if(!PASSWORD_REGEX.test(req.body.password)) {
+    return res.status(400).json({'error' : 'password invalid (Password must be between 4 and 8 digits long and include at least one numeric digit.)'});
+
+}
+
   
     const dataRegister = {
       email : req.body.email,
