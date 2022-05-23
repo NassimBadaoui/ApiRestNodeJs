@@ -10,7 +10,7 @@ const INSERT_REGISTER_SQL =
 
 const INSERT_SIA_AUTHENTIFICATION =
   "INSERT INTO SIA_AUTHENTIFICATION(ID_SIA_AUTHENTIFICATION, IDENTIFIANTS, MOTDEPASSE, NOM, PRENOM, EMAIL, PROFIL, DATE_INSCRIPTION)\n"+
-  "VALUES (ID_SIA_AUTHENTIFICATION.NEXTVAL, :identifiant, :motdepasse, :nom, :prenom, :email, :profil, SYSDATE)";
+  "VALUES (SEQ_SIA_AUTHENTIFICATION.NEXTVAL, :username, :password, :lastname, :firstname, :email, 0, SYSDATE)";
   //"RETURNING EMAIL INTO :email";
 
   async function createRegister(conn) {
@@ -22,7 +22,7 @@ const INSERT_SIA_AUTHENTIFICATION =
     //delete dataRegister.creationDate;
     //delete dataRegister.updateDate;
     console.log("test" + dataRegister.password);
-    const result = await database.simpleDimExecute(INSERT_REGISTER_SQL, dataRegister);
+    const result = await database.simpleDimExecute(INSERT_SIA_AUTHENTIFICATION, dataRegister);
     //dataRegister.conId = result.outBinds.conId[0];
     return dataRegister;
   }
@@ -32,8 +32,11 @@ const INSERT_SIA_AUTHENTIFICATION =
 const SELECT_EMAIL_EXIST = `SELECT COUNT(*) AS cnt FROM TEST_AUTH_USERS`;
 //  const SELECT_EMAIL_EXIST = `SELECT ID_USERS, EMAIL, USERNAME, PASSWORD, DATE_INSCRIPTION, BIO, ISADMIN FROM TEST_AUTH_USERS`;
 
+const SELECT_EMAIL_EXIST_SIA_AUTHENTIFICATION = `SELECT COUNT(*) AS cnt FROM SIA_AUTHENTIFICATION`;
+//  const SELECT_EMAIL_EXIST = `SELECT ID_USERS, EMAIL, USERNAME, PASSWORD, DATE_INSCRIPTION, BIO, ISADMIN FROM TEST_AUTH_USERS`;
+
   async function find(checkEmail) {
-    let query = SELECT_EMAIL_EXIST;
+    let query = SELECT_EMAIL_EXIST_SIA_AUTHENTIFICATION;
     const binds = {};
     console.log(checkEmail);
     if (checkEmail.email) {

@@ -3,8 +3,8 @@ const register = require('../databases/register.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const EMAIL_REGEX = /[-_\w]+\\.\w+/;
+ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//const EMAIL_REGEX = /[-_\w]+\\.\w+/;
 const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
 //Password expression. Password must be between 4 and 8 digits long and include at least one numeric digit. https://regexlib.com/Search.aspx?k=password&c=-1&m=-1&ps=20
 
@@ -65,10 +65,11 @@ if(!PASSWORD_REGEX.test(req.body.password)) {
 
   
     const dataRegister = {
-      email : req.body.email,
       username : req.body.username,
       password : req.body.password,
-      bio : req.body.bio
+      lastname : req.body.lastname,
+      firstname : req.body.firstname,
+      email : req.body.email
     };
 
 
