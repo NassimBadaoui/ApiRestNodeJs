@@ -12,7 +12,7 @@ async function post(req, res, next) {
   } catch (err) {
     console.log("prob");
     next(err);
-  }
+}
 }
 module.exports.post = post;
 
