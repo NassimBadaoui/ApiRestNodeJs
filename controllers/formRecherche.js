@@ -36,6 +36,7 @@ function getDataFormRecherche(req) {
     coordonnees: req.body.coordonnees == null ? "" : req.body.coordonnees,
     mail: req.body.mail == null ? "" : req.body.mail,
     telephone: req.body.telephone == null ? "" : req.body.telephone,
+    finalite_recherche : req.body.finalite_recherche,
     referent_medical: req.body.referent_medical == null ? "" : req.body.referent_medical,
     contexte: req.body.contexte == null ? "" : req.body.contexte,
     objectif: req.body.objectif == null ? "" : req.body.objectif,

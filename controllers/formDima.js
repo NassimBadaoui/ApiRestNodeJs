@@ -34,6 +34,7 @@ function getDataFormDima(req) {
     coordonnees :  req.body.coordonnees == null ? "" : req.body.coordonnees, 
     mail :  req.body.mail == null ? "" : req.body.mail, 
     telephone :  req.body.telephone == null ? "" : req.body.telephone, 
+    finalite_recherche : req.body.finalite_recherche,
     referent_medical :  req.body.referent_medical == null ? "" : req.body.referent_medical, 
     demande_travail_academique :  req.body.demande_travail_academique == null ? "" : req.body.demande_travail_academique, 
     demande_recherche :  req.body.demande_recherche == null ? "" : req.body.demande_recherche, 
