@@ -67,3 +67,4 @@ function getDataForAuthentification(userFound, req, res, next) {
 
 
 }
+

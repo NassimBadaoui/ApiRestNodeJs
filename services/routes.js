@@ -2,6 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const register = require('../controllers/register.js');
 const authentification = require('../controllers/authentification.js');
+const authentificationbis = require('../controllers/authentificationbis.js');
 const formDIMA = require('../controllers/formDima.js');
 const formRecherche = require('../controllers/formRecherche.js');
 
@@ -14,6 +15,12 @@ router.route('/api/register/')
 
 router.route('/api/authentification/')
   .post(authentification.post);
+//.post(register.post)
+//.put(register.put)
+//.delete(register.delete);
+
+router.route('/api/me/')
+  .get(authentificationbis.get);
 //.post(register.post)
 //.put(register.put)
 //.delete(register.delete);
